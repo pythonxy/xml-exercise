@@ -17,7 +17,7 @@ Others, follow the instruction on the official site.
 ## How to Run Xpath/Xquery
 Use the bin file `xquery` in this repo. It is a simple wrapper around `saxon` to make queries easier to type. 
 
-**Important**: Each xpath file should only contain one `return` clause, so you need to comment out other clauses to make it running. 
+**Important**: Each xpath file should only contain one `return` clause, so you need to **comment out other clauses** to make it running.
 
   xquery <xpath file>
 
