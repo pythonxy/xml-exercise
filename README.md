@@ -17,14 +17,17 @@ Others, follow the instruction on the official site.
 ## How to Run Xpath/Xquery
 Use the bin file `xquery` in this repo. It is a simple wrapper around `saxon` to make queries easier to type. 
 
+**Important**: Each xpath file should only contain one `return` clause, so you need to comment out other clauses to make it running. 
+
   xquery <xpath file>
 
-**Important**: each xpath file should only contain one `return` clause, so you need to comment out other clauses to make it running. If you are using `vim` you could use the function I write in vim to run the pieces of code one by one.
+If you are using `vim` you could use the function I write in vim to run the pieces of code one by one. Just select the code you need to run in a visual block, and press`<leader>xe` to run them.
 
-More detailed usage: checkout the document on the [official site](http://www.saxonica.com/documentation/using-xquery/commandline.xml) for more details.
+More detailed usage: checkout the document on the [official site](http://www.saxonica.com/documentation/using-xsl/commandline.xml) for more details.
 
 ## How to Run XSLT
 Use the bin file `xslt` in this repo. It is a simple wrapper around `saxon` to make queries easier to type. 
 
   xslt -xsl:<xslt file> <original xml>
 
+More detailed usage: checkout the document on the [official site](http://www.saxonica.com/documentation/using-xquery/commandline.xml) for more details.
