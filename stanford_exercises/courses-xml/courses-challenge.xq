@@ -39,21 +39,19 @@ let $catalog := doc('../courses.xml'),
     return $c/Title
 
 (: Question 5 :)
-(: Return titles of courses taught by a professor with the last name "Ng" but not by :)
-(: a professor with the last name "Thrun". :)
+(: Return titles of courses taught by a professor with the last name "Ng" but not by a professor with the last name "Thrun". :)
 let $catalog := doc('../courses.xml'),
   $courses := $catalog//Course
   for $c2 in (
     for $c in $courses
       where every $name in $c//Professor/Last_Name satisfies $name != 'Thrun'
-      return $c
+      return $c 
     )
   where $c2//Professor/Last_Name = 'Ng'
   return $c2/Title
 
 (: Question 6 :)
-(: Return course numbers of courses that have a course taught by Eric Roberts as a :)
-(: prerequisite. :)
+(: Return course numbers of courses that have a course taught by Eric Roberts as a prerequisite. :)
 let $catalog := doc('../courses.xml'),
   $courses := $catalog//Course
   for $c2 in $courses

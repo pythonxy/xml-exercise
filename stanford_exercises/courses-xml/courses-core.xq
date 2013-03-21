@@ -21,9 +21,8 @@ return $catalog//Course[@Enrollment > 500]/Title
 (: Question 4 :)
 
 (: Return titles of departments that have some course that takes "CS106B" as a prerequisite. :)
-(: doc.xpath '/Course_Catalog/Department[Course//Prereq = "CS106B"]/Title' :)
 let $catalog := doc('../courses.xml')
-return $catalog//Course[@Enrollment > 500]/Title
+return $catalog/Course_Catalog/Department[Course//Prereq = "CS106B"]/Title
 
 (: Question 5 :)
 
