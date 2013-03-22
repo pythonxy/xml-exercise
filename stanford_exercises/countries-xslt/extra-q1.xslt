@@ -6,8 +6,8 @@
     <xsl:for-each select="countries/country">
       <!-- use 'and' to compose compound conditions and not() to negate test -->
       <xsl:if test='count(city) > 0 and not(@area > 40000)' >
-      <xsl:copy-of select='.' />
-    </xsl:if>
+        <xsl:copy-of select='.' />
+      </xsl:if>
     </xsl:for-each>
     </countries>
   </xsl:template>

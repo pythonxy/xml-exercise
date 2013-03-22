@@ -2,7 +2,7 @@
 
 (: Question 1 :)
 (: Return the title of the course with the largest enrollment. :)
-let $catalog := doc('../courses.xml'),
+let $catalog := doc('courses.xml'),
   $courses := $catalog//Course
   for $c in $courses
     where $c/@Enrollment = max($courses/@Enrollment)
@@ -12,7 +12,7 @@ let $catalog := doc('../courses.xml'),
 (: Return course numbers of courses that have the same title as some other course. :)
 (: (Hint: You might want to use the "preceding" and "following" navigation axes for :)
 (: this query, which were not covered in the video or our demo script; they match any preceding or following node, not just siblings.) :)
-let $catalog := doc('../courses.xml'),
+let $catalog := doc('courses.xml'),
   $courses := $catalog//Course
   for $c in $courses
     where $c/data(Title) = $c/following::*/data(Title) or
@@ -21,7 +21,7 @@ let $catalog := doc('../courses.xml'),
 
 (: Question 3 :)
 (: Return the number (count) of courses that have no lecturers as instructors. :)
-let $catalog := doc('../courses.xml'),
+let $catalog := doc('courses.xml'),
   $courses := $catalog//Course
   return count(
     for $c in $courses
@@ -32,7 +32,7 @@ let $catalog := doc('../courses.xml'),
 (: Question 4 :)
 (: Return titles of courses taught by the chair of a department. For this question, :)
 (: you may assume that all professors have distinct last names. :)
-let $catalog := doc('../courses.xml'),
+let $catalog := doc('courses.xml'),
   $courses := $catalog//Course
   for $c in $courses
     where $c/Instructors/*/Last_Name = $c/parent::Department/Chair/Professor//Last_Name
@@ -40,7 +40,7 @@ let $catalog := doc('../courses.xml'),
 
 (: Question 5 :)
 (: Return titles of courses taught by a professor with the last name "Ng" but not by a professor with the last name "Thrun". :)
-let $catalog := doc('../courses.xml'),
+let $catalog := doc('courses.xml'),
   $courses := $catalog//Course
   for $c2 in (
     for $c in $courses
@@ -52,7 +52,7 @@ let $catalog := doc('../courses.xml'),
 
 (: Question 6 :)
 (: Return course numbers of courses that have a course taught by Eric Roberts as a prerequisite. :)
-let $catalog := doc('../courses.xml'),
+let $catalog := doc('courses.xml'),
   $courses := $catalog//Course
   for $c2 in $courses
   where $c2//data(Prereq) = (
@@ -68,7 +68,7 @@ let $catalog := doc('../courses.xml'),
 (: Create a summary of CS classes: List all CS department courses in order of enrollment. :)
 (: For each course include only its Enrollment (as an attribute) and its Title (as a :)
 (: subelement). :)
-let $catalog := doc('../courses.xml'),
+let $catalog := doc('courses.xml'),
   $courses := $catalog//Department[@Code = 'CS']/Course
 return <Summary> 
   {
@@ -84,7 +84,7 @@ return <Summary>
 (: subelements should have the same structure as in the original data. For this question, :)
 (: you may assume that all professors have distinct last names. Watch out -- the presence/absence :)
 (: of middle initials may require some special handling. :)
-let $catalog := doc('../courses.xml'),
+let $catalog := doc('courses.xml'),
   $professors := $catalog//Professor
 
 let $distinct_prof := (
@@ -116,7 +116,7 @@ return <Professors>
 (: as in the original data, with an additional single "Courses" subelement under Professor, :)
 (: containing a further "Course" subelement for each course number taught by that professor. :)
 (: Professors who do not teach any courses should have no Courses subelement at all. :)
-let $catalog := doc('../courses.xml'),
+let $catalog := doc('courses.xml'),
   $professors := $catalog//Professor
 
 let $distinct_prof := (

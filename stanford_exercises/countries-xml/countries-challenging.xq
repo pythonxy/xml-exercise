@@ -2,7 +2,7 @@
 
 (: Question 1 :)
 (: Return the names of all countries that have at least three cities with population greater than 3 million. :)
-let $countries := doc('../countries.xml')/countries/country
+let $countries := doc('countries.xml')/countries/country
 for $c in $countries
   where count($c/city[data(population) > 3000000]) > 3
   return $c/data(@name)
@@ -22,7 +22,7 @@ for $c in $countries
     (: ... :)
   (: </German> :)
 (: </result> :)
-let $countries := doc('../countries.xml')/countries/country,
+let $countries := doc('countries.xml')/countries/country,
     $frenches := distinct-values($countries[language = 'French']/data(@name)),
     $germans := distinct-values($countries[language = 'German']/data(@name))
   return <result>
@@ -51,7 +51,7 @@ let $countries := doc('../countries.xml')/countries/country,
   (: <highest density="value">country-name</highest> :)
   (: <lowest density="value">country-name</lowest> :)
 (: </result> :)
-let $countries := doc('../countries.xml')/countries/country,
+let $countries := doc('countries.xml')/countries/country,
   $lowest := (for $c in $countries
       where $c/data(@population div @area) = min($countries/data(@population div @area))
       return $c),
@@ -71,7 +71,7 @@ let $countries := doc('../countries.xml')/countries/country,
 (: has a city of the same name. (Hint: You might want to use the "preceding" and/or :)
 (: "following" navigation axes for this query, which were not covered in the video or :)
 (: our demo script; they match any preceding or following node, not just siblings.) :)
-let $countries := doc('../countries.xml')/countries/country,
+let $countries := doc('countries.xml')/countries/country,
   $cities := $countries//city
   for $c in $cities
     where $c/data(name) = $c/following::*/data(name) or
@@ -80,7 +80,7 @@ let $countries := doc('../countries.xml')/countries/country,
 
 (: Question 5 :)
 (: Return the average number of languages spoken in countries where Russian is spoken. :)
-let $countries := doc('../countries.xml')/countries/country
+let $countries := doc('countries.xml')/countries/country
 return avg($countries[data(language) = 'Russian']/count(language))
 
 (: Question 6 :)
@@ -88,7 +88,7 @@ return avg($countries[data(language) = 'Russian']/count(language))
 (: the name of the country textually contains the language name. Return each pair as :)
 (: a country element with language attribute, e.g., :)
 (: <country language="French">French Guiana</country> :)
-let $countries := doc('../countries.xml')/countries/country
+let $countries := doc('countries.xml')/countries/country
 for $c in $countries
   for $l in $c/language
     where contains($c/data(@name), $l)
@@ -103,7 +103,7 @@ for $c in $countries
   (: <big>city-name</big> :)
   (: ... :)
 (: </country> :)
-let $countries := doc('../countries.xml')/countries/country
+let $countries := doc('countries.xml')/countries/country
 for $c in $countries
   where count($c/city[population > 7000000]) > 0
   return 
@@ -119,7 +119,7 @@ for $c in $countries
 (: Return all countries where at least one language is listed, but the total percentage :)
 (: for all listed languages is less than 90%. Return the country element with its name :)
 (: attribute and its language subelements, but no other attributes or subelements. :)
-let $countries := doc('../countries.xml')/countries/country
+let $countries := doc('countries.xml')/countries/country
 for $c in $countries[language]
   where sum($c/language/data(@percentage)) < 90
   return 
@@ -134,7 +134,7 @@ for $c in $countries[language]
 (: Return all countries where at least one language is listed, and every listed language :)
 (: is spoken by less than 20% of the population. Return the country element with its :)
 (: name attribute and its language subelements, but no other attributes or subelements. :)
-let $countries := doc('../countries.xml')/countries/country
+let $countries := doc('countries.xml')/countries/country
 for $c in $countries[language]
   where every $l in $c/language satisfies $l/data(@percentage) < 20
   return 
@@ -150,7 +150,7 @@ for $c in $countries[language]
   (: <MostPopular>country-name</MostPopular> :)
   (: <LeastPopular>country-name</LeastPopular> :)
 (: </LangPair> :)
-let $countries := doc('../countries.xml')/countries/country,
+let $countries := doc('countries.xml')/countries/country,
   $most_popular := 
     for $c in $countries[count(language) > 1]
       for $l in $c/language
@@ -183,7 +183,7 @@ let $countries := doc('../countries.xml')/countries/country,
   (: </language> :)
   (: ... :)
 (: </languages> :)
-let $countries := doc('../countries.xml')/countries/country,
+let $countries := doc('countries.xml')/countries/country,
   $languages := $countries/language,
   $language_names := distinct-values($countries/data(language))
   return 
